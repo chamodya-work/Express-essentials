@@ -8,3 +8,19 @@ app.listen(PORT, () => {
     console.log(`The server is running on port ${PORT}`);
     console.log(data)
 });
+
+app.get('/', (req, res) => {
+    res.send('this is get request at /');
+});
+
+app.post('/create', (req, res) => {
+    res.send('this is post request at /');
+});
+
+app.put('/edit', (req, res) => {
+    res.send('this is put request at /');
+});
+
+app.delete('/delete', (req, res) => {
+    res.send('this is delete request at /');
+});
