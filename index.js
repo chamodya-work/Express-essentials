@@ -1,8 +1,10 @@
-import express from "express";
+import express from 'express';
+import data from './data/mock.json' with { type: 'json' };
 
-const app= express();
-const PORT=3000;
+const app = express();
+const PORT = 3000;
 
 app.listen(PORT, () => {
-    console.log(`Server is running on ${PORT}`);
-})
+    console.log(`The server is running on port ${PORT}`);
+    console.log(data)
+});
