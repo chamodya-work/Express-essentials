@@ -19,7 +19,13 @@ app.get('/', (req, res) => {
 
 // Route with a parameter
 app.get('/class/:id', (req, res) => {
-    console.log(req.params);
+    const studentId =Number(req.params.id);
+    const student=data.filter((student)=>
+        student.id===studentId
+    )
+    console.log(student);
+    res.send(student);
+
 });
 
 
