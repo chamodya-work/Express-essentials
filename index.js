@@ -10,12 +10,18 @@ app.use("/images", express.static("images"));
 
 app.listen(PORT, () => {
     console.log(`The server is running on port ${PORT}`);
-    console.log(data)
+    // console.log(data)
 });
 
 app.get('/', (req, res) => {
     res.json(data);
 });
+
+// Route with a parameter
+app.get('/class/:id', (req, res) => {
+    console.log(req.params);
+});
+
 
 app.post('/create', (req, res) => {
     res.send('this is post request at /');
