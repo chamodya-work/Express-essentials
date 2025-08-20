@@ -12,10 +12,6 @@ app.use(express.urlencoded({ extended: true })); // to parse URL-encoded bodies
 
 app.use("/images", express.static("images"));
 
-app.listen(PORT, () => {
-    console.log(`The server is running on port ${PORT}`);
-    // console.log(data)
-});
 
 // route of route in the application
 app.get('/', (req, res) => {
@@ -30,7 +26,8 @@ app.post("/item", (req, res) => {
 // Route with multiple methods
 app.route("/class")
     .get((req, res) => {
-        res.send('this is get request at /class');
+        // res.send('this is get request at /class');
+        throw new Error();
     })
     .post((req, res) => {
         res.send('this is post request at /class');
@@ -83,4 +80,15 @@ app.put('/edit', (req, res) => {
 
 app.delete('/delete', (req, res) => {
     res.send('this is delete request at /');
+});
+
+//custom error handler
+app.use((error,req,res,next)=>{
+    console.error(error.stack);
+    res.status(500).send('Something broke!');
+});
+
+app.listen(PORT, () => {
+    console.log(`The server is running on port ${PORT}`);
+    // console.log(data)
 });
