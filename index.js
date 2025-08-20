@@ -17,6 +17,16 @@ app.get('/', (req, res) => {
     res.json(data);
 });
 
+//GET with next()
+app.get('/next', (req, res,next) => {
+    console.log('this response send by the next function');
+    next();
+},
+(req, res) => {
+    res.send('this is  route with  second callback function');
+})
+
+
 // Route with a parameter
 app.get('/class/:id', (req, res) => {
     const studentId =Number(req.params.id);
