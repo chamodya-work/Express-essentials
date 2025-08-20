@@ -13,6 +13,7 @@ app.listen(PORT, () => {
     // console.log(data)
 });
 
+// route of route in the application
 app.get('/', (req, res) => {
     res.json(data);
 });
@@ -26,8 +27,17 @@ app.get('/next', (req, res,next) => {
     res.send('this is  route with  second callback function');
 })
 
+//GET - download method
+app.get('/download', (req, res) => {
+    res.download("images/mountains_2.jpeg")
+});
 
-// Route with a parameter
+//GET - redirect method
+app.get('/redirect', (req, res) => {
+    res.redirect("https://www.youtube.com/")
+});
+
+// Route with a parameter 
 app.get('/class/:id', (req, res) => {
     const studentId =Number(req.params.id);
     const student=data.filter((student)=>
