@@ -4,7 +4,11 @@ import data from './data/mock.json' with { type: 'json' };
 const app = express();
 const PORT = 3000;
 
+//use the public folder to serve static files
 app.use(express.static("public"));
+
+// app.use(express.json()); // to parse JSON bodies
+app.use(express.urlencoded({ extended: true })); // to parse URL-encoded bodies
 
 app.use("/images", express.static("images"));
 
@@ -17,6 +21,26 @@ app.listen(PORT, () => {
 app.get('/', (req, res) => {
     res.json(data);
 });
+
+app.post("/item", (req, res) => {
+    console.log(req.body);
+    res.send(req.body);
+});
+
+// Route with multiple methods
+app.route("/class")
+    .get((req, res) => {
+        res.send('this is get request at /class');
+    })
+    .post((req, res) => {
+        res.send('this is post request at /class');
+    })
+    .put((req, res) => {
+        res.send('this is put request at /class');
+    })
+    .delete((req, res) => {
+        res.send('this is delete request at /class');
+    });
 
 //GET with next()
 app.get('/next', (req, res,next) => {
